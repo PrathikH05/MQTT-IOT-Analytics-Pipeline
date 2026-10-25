@@ -1,0 +1,37 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mqtt-broker
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    restart: unless-stopped
+    networks:
+      - iot-network
+
+  postgres:
+    image: postgres:16
+    container_name: iot-postgres
+    environment:
+      POSTGRES_USER: iot_user
+      POSTGRES_PASSWORD: iot_pass
+      POSTGRES_DB: iot_pipeline
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    networks:
+      - iot-network
+
+volumes:
+  pgdata:
+
+networks:
+  iot-network:
+    driver: bridge

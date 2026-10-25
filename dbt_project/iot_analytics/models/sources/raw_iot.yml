@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: raw
+    database: iot_pipeline
+    schema: public
+    description: "Raw IoT sensor data ingested from MQTT"
+
+    tables:
+      - name: raw_sensor_data
+        description: "Raw sensor readings from devices"
+        columns:
+          - name: id
+            description: "Unique record ID"
+          - name: sensor_id
+            description: "Sensor/device identifier"
+          - name: sensor_type
+            description: "Type of sensor (e.g. temperature, humidity)"
+          - name: value
+            description: "Sensor reading value"
+          - name: unit
+            description: "Unit of measurement"
+          - name: location
+            description: "Location of the sensor"
+          - name: reading_timestamp
+            description: "Timestamp of the reading"
+          - name: ingested_at
+            description: "Time when the record was ingested"

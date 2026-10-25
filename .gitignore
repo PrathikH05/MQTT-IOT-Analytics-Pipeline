@@ -1,0 +1,29 @@
+﻿
+# Python environments and caches
+dbt-env/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Frontend dependencies and builds
+node_modules/
+frontend/dist/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+profiles.yml
+.streamlit/secrets.toml
+
+# dbt generated files
+dbt_packages/
+target/
+logs/
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

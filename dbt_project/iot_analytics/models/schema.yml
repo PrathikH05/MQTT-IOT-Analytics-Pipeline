@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_iot
+    columns:
+      - name: id
+        tests: [unique, not_null]
+      - name: sensor_id
+        tests: [not_null]
+      - name: reading_timestamp
+        tests: [not_null]
+
+  - name: hourly_sensor_summary
+    columns:
+      - name: sensor_id
+        tests: [not_null]
+      - name: reading_hour
+        tests: [not_null]
+      - name: sensor_hour_key
+        tests: [unique, not_null]
+
+  - name: daily_sensor_summary
+    columns:
+      - name: sensor_id
+        tests: [not_null]
+      - name: reading_date
+        tests: [not_null]
+      - name: sensor_day_key
+        tests: [unique, not_null]
