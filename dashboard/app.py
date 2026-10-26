@@ -2,16 +2,16 @@ import pandas as pd
 import plotly.express as px
 import psycopg2
 import streamlit as st
-
+from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(
     page_title="IoT Sensor Dashboard",
     page_icon="📊",
     layout="wide",
 )
+st_autorefresh(interval=5000, key="demo_refresh")
 
-
-@st.cache_data(ttl=60)
+@st.cache_data(ttl=5)
 def load_data(query):
     conn = psycopg2.connect(
         host="localhost",
